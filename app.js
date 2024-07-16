@@ -21,9 +21,4 @@ app.get('/',async (req, res, next)=>{
     return res.json({user: u});
 })
 
-app.get('createGame', async (req, res, next) => {
-    const game = new Board(req.body?._id, req.body?.user_id, req.body?.bingo, choices);
-})
-_id ,user_id, bingo_id, choices, cells
-
 export default app;

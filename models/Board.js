@@ -3,8 +3,8 @@ import { ObjectId } from 'mongodb';
 import { makeBoard } from '../helpers/boardHelpers.js';
 
 class Board {
-    constructor(_id ,user_id, bingo_id, choices, cells){
-        this._id = _id;
+    constructor(board_id ,user_id, bingo_id, choices){
+        this.board_id = board_id;
         this.user_id = user_id;
         this.bingo_id = bingo_id;
         this.cells = choices ? makeBoard(choices) : cells;

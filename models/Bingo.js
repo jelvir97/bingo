@@ -1,7 +1,7 @@
 
-import { usersCollection, bingoCollection, boardCollection } from '../MongoDB.js';
-import Board from "./Board.js"
+import { usersCollection, gameCollection, boardCollection } from '../MongoDB.js';
 import { ObjectId } from 'mongodb';
+import { Game } from './Game.js'
 
 
 class Bingo {
@@ -14,10 +14,21 @@ class Bingo {
      * Creates Bingo instance and assigns game to host(game creator).
      */
     static createGame = async(title, host_id, choices)=>{
-        const res = await bingoCollection.insertOne({ title, host_id, choices });
-        const _id = res.insertedId;
+        const res = await gameCollection.insertOne({ title, host_id, choices });
         return new Bingo( _id, title, host_id, choices);
     }
+
+        /**
+     * 
+     * @param {String} username 
+     * @param {Number} phoneNumber 
+     * 
+     * Creates user account
+     */
+        static createUser = async(username, phoneNumber)=>{
+            const res = await usersCollection.insertOne({ phoneNumber, username });
+            return User.register( _id, title, host_id, choices);
+        }
 
     /**
      * 
@@ -25,7 +36,7 @@ class Bingo {
      * Finds bingo game from db with ObjectId. Mostly for dev purposes.
      */
     static findGame = async (_id)=>{
-        return await bingoCollection.findOne({_id})
+        return await gameCollection.findOne({_id})
     }
 
 }
