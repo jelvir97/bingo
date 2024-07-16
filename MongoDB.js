@@ -11,9 +11,9 @@ const client = new MongoClient(uri, {
 });
 
 const usersCollection = client.db("Bingo").collection("users")
-const bingoCollection = client.db("Bingo").collection("bingo")
+const gameCollection = client.db("Bingo").collection("game")
 const boardCollection = client.db("Bingo").collection("board")
 
 // run().catch(console.dir);
 
-export {client, usersCollection, bingoCollection, boardCollection}
+export {client, usersCollection, gameCollection, boardCollection}

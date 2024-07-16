@@ -17,19 +17,20 @@ class User {
             },
             {
               $lookup: {
-                from: 'bingo',
-                localField: 'bingo_id', // Field in board referencing bingo game
+                from: 'game',
+                localField: 'game_id', // Field in board referencing bingo game
                 foreignField: '_id',
                 as: 'associatedGame' // Name for the lookup result
               }
             },
-            {
-              $unwind: '$associatedGame' // Deconstruct the array from the lookup (optional)
-            },
+            // {
+            //   $unwind: '$associatedGame' // Deconstruct the array from the lookup (optional)
+            // },
             {
               $project: {
                 _id: 1, // Exclude board id if not needed
                 user_id: 1, // User id from the board collection
+                cells: 1,
                 bingoTitle: '$associatedGame.title', // Title from the bingo game
                 bingoHost: '$associatedGame.host_id'
               }
